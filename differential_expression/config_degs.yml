@@ -1,0 +1,6 @@
+counts_file: "/path/to/count/file"
+metadata_file: "/path/to/metadata/file"
+pval_method: "BH" ## choose pval correction method: "holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr", "none"
+pval_thr: 0.05 ## cutoff for pvalue
+logFC_thr: 1 ## cutoff for logFC (absolute value) 
+
