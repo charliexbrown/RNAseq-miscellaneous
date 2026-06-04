@@ -66,10 +66,10 @@ counts_logcpm <- cpm(counts, log=TRUE)
 # 2. Build design
 # --------------------
 
-### MAKE SURE TO SET  THE LEVEL YOU WANT AS CONTROL AS THE FIRST CATEGORY IN YOUR METADATA FILE (ie sample from that category must be in the first row of metadata
+### MAKE SURE TO SET THE LEVEL YOU WANT AS CONTROL AS THE FIRST CATEGORY IN YOUR METADATA FILE (ie sample from that category must be in the first row of metadata)
 cat("Generating design matrix...\n")
 control_group <- as.character(meta$Condition[1])
-condition <- factor(meta$Condition, levels=c(control_group, setdiff(unique(meta$Condition), control_group))) #fattorizzo in modo da avere prima il controllo e poi tutti i gruppi di confronto
+condition <- factor(meta$Condition, levels=c(control_group, setdiff(unique(meta$Condition), control_group)))
 
 if ( "Batch" %in% colnames(meta)) {
      if (is.numeric(meta$Batch)){
@@ -152,10 +152,10 @@ for (grp in groups){
     #conds <- levels(condition)
     
     all_coefs <- colnames(design)
-    contrast <- rep(0, length(all_coefs)) # generate vector automatically, ie 3 groups contrast=[0,0,0] 
+    contrast <- rep(0, length(all_coefs)) 
     names(contrast) <- all_coefs
     
-    target_idx <- which(all_coefs == target_level | all_coefs == paste0("condition", target_level)) ## this handles the case where design contains only condition or condition and batch covariate
+    target_idx <- which(all_coefs == target_level | all_coefs == paste0("condition", target_level)) 
     ctrl_idx <- which(all_coefs == ctrl_level | all_coefs == paste0("condition", ctrl_level))
     
     if (length(target_idx)>0 & length(ctrl_idx)>0) {
